@@ -1,0 +1,25 @@
+{
+  "extends": "airbnb/legacy",
+  "parser": "babel-eslint",
+  "env": {
+    "node": true,
+    "browser": false
+  },
+  "globals": {
+    "IS_SERVER": true,
+    "Promise": true
+  },
+  "rules": {
+    "eqeqeq": [2, "smart"],
+    "max-len": [2, 200],
+    "brace-style": [0, "1tbs"],
+    "no-var": 2,
+    "import/no-unresolved": 0,
+    "no-const-assign": 2,
+    "prefer-const": 2,
+    "no-underscore_dangle": 0,
+    "no-else-return": 0,
+    "linebreak-style": [0, "unix"],
+    "no-param-reassign": 0
+  }
+}
