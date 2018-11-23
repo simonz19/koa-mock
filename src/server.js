@@ -1,4 +1,5 @@
 const Koa = require('koa');
+const http = require('http');
 const chalk = require('chalk');
 const bodyparser = require('koa-bodyparser');
 const cors = require('koa-cors');
@@ -8,6 +9,7 @@ const config = require('./config').mergeConfig(require('./utils/getAppConfig')(p
 const errorHandler = require('./middleware/errorHandler');
 const chalkWapper = require('./utils/chalkWapper');
 const router = require('./router');
+const setupWatch = require('./utils/setupWatch');
 
 const app = new Koa();
 
@@ -24,8 +26,10 @@ app.use(bodyparser());
 app.use(logger());
 app.use(router.routes());
 
-if (require.main === module) {
-  app.listen(config.port, () => {
-    chalkWapper(chalk.cyan)(`mock start sucessful on http://localhost:${config.port}`);
-  });
-}
+const httpServer = http.createServer(app.callback());
+httpServer.listen(config.port, () => {
+  if (require.main !== module) {
+    setupWatch(httpServer);
+  }
+  chalkWapper(chalk.cyan)(`mock start sucessful on http://localhost:${config.port}`);
+});

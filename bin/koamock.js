@@ -16,7 +16,7 @@ switch (script) {
   case 'start':
     result = spawn.sync(
       'node',
-      [require.resolve('../src/server')].concat(args),
+      [require.resolve(`../${script}`)].concat(args),
       { stdio: 'inherit' } // eslint-disable-line
     );
     process.exit(result.status);

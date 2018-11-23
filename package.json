@@ -6,7 +6,7 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "start": "cross-env NODE_ENV=development nodemon src/server.js"
+    "test": "cross-env NODE_ENV=development nodemon src/server.js"
   },
   "lint-staged": {
     "*.js": [
@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "chalk": "^2.4.1",
+    "chokidar": "^2.0.4",
     "co": "^4.6.0",
     "cross-spawn": "^6.0.5",
     "fs-extra": "^7.0.1",
