@@ -1,4 +1,4 @@
-const SystemError = require('../errors/SystemError');
+const BaseError = require('../errors/BaseError');
 
 // eslint-disable-next-line
 module.exports = config => {
@@ -7,7 +7,7 @@ module.exports = config => {
       await next();
     } catch (err) {
       ctx.status = err.statusCode || err.status || 500;
-      ctx.body = new SystemError();
+      ctx.body = new BaseError(`mock error: ${err.message}`);
       ctx.app.emit('error', err, ctx);
     }
   };

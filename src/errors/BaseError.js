@@ -1,6 +1,6 @@
 module.exports = class BaseError {
-  constructor(...args) {
+  constructor(message) {
     this.success = false;
-    this.message = args.message || '未知错误';
+    this.message = message || '未知错误';
   }
 };

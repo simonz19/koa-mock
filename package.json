@@ -1,5 +1,9 @@
 {
-  "private": true,
+  "name": "koa-mock",
+  "version": "0.1.0",
+  "bin": {
+    "koamock": "./bin/koamock.js"
+  },
   "scripts": {
     "precommit": "lint-staged",
     "start": "cross-env NODE_ENV=development nodemon src/server.js"
@@ -12,6 +16,8 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "co": "^4.6.0",
+    "cross-spawn": "^6.0.5",
+    "fs-extra": "^7.0.1",
     "koa": "^2.5.2",
     "koa-body": "^4.0.4",
     "koa-bodyparser": "^4.2.1",
@@ -26,6 +32,7 @@
     "lodash": "^4.17.10",
     "nodemon": "^1.13.3",
     "qs": "^6.5.2",
+    "strip-json-comments": "^2.0.1",
     "thunkify": "^2.1.2",
     "uuid": "^3.3.2"
   },
@@ -40,5 +47,12 @@
     "husky": "0.12.0",
     "lint-staged": "7.0.5",
     "prettier-eslint": "6.4.2"
-  }
+  },
+  "description": "mock based on koa",
+  "keywords": [
+    "koa",
+    "mock"
+  ],
+  "author": "zxy",
+  "license": "ISC"
 }
