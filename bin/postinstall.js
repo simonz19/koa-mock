@@ -3,10 +3,10 @@
 const chalk = require('chalk');
 const fs = require('fs-extra');
 const path = require('path');
-const { realpathSync } = fs;
+// const { realpathSync } = fs;
 const cwd = process.cwd();
 
-const appDirectory = realpathSync(cwd);
+const appDirectory = path.resolve(cwd, '..', '..');
 const rcPath = path.resolve(appDirectory, '.koamockrc.js');
 const mockDirectory = path.resolve(appDirectory, 'mock');
 
