@@ -20,7 +20,7 @@ file a npm scritp in your package.json file like: `"mock": "koamock start"`, the
 
 ### mock datas construction
 
-here is the regulation, each level except `endpoint` of your api path should be a folder below `mock` dir, and a `index.json` file which is for mock data should be in the folder of last level , for example:
+here is the constraint, each level except `endpoint` of your api path should be a folder below `mock` dir, and a `index.json` file which is for mock data should be in the folder of last level , for example:
 
 'http://localhost:8080/api/biz-all/search/list'
 
@@ -43,12 +43,12 @@ define mock service port.
 
 a fixed part of api path such as "/api/biz-all".
 
-### mode -todo
+### mode
 
-mock,proxy,auto
+- mock => use local data as response
+- proxy => mock service will change to a absolute proxy service, this can automatically record response as local data for `mock` and `auto` mode.
+- auto => auto choose mode, `mock` mode will comes first if local data is exist.
 
-### proxyTo - todo
+### proxyTo
 
-## todo
-
-- setup `proxyTo` to record mock data automatically.
+proxy host, worked in `proxy` and `auto` mode.

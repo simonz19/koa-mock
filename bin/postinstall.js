@@ -6,6 +6,8 @@ const path = require('path');
 // const { realpathSync } = fs;
 const cwd = process.cwd();
 
+if (cwd === __dirname) return;
+
 const appDirectory = path.resolve(cwd, '..', '..');
 const rcTplPath = path.resolve(__dirname, '..', 'src/tpl/.koamockrc.js');
 const rcAppPath = path.resolve(appDirectory, '.koamockrc.js');

@@ -11,6 +11,18 @@ const chalkWapper = require('./utils/chalkWapper');
 const router = require('./router');
 const setupWatch = require('./utils/setupWatch');
 
+if (config.mode === 'proxy' && !config.proxyTo) {
+  console.error("'proxyTo' is required in 'proxy' mode");
+  console.log();
+  process.emit(1);
+  return;
+}
+
+if (config.mode === 'auto' && !config.proxyTo) {
+  console.warn("seems like you forget to set 'proxyTo' in 'auto' mode, data will be only generated in local. ");
+  console.log();
+}
+
 const app = new Koa();
 
 app.use(errorHandler());
