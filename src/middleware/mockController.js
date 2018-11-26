@@ -38,7 +38,7 @@ const handleMockMode = async ctx => {
 
 const handleAutoMode = async ctx => {
   const mockpath = getMockPath(ctx);
-  if (mockpath && fs.existsSync(mockpath) || !proxyTo) {
+  if ((mockpath && fs.existsSync(mockpath)) || !proxyTo) {
     return handleMockMode(ctx);
   } else {
     return handleProxyMode(ctx);
@@ -62,7 +62,7 @@ const handleProxyMode = async ctx => {
   }
 };
 
-module.exports = async ctx => {
+module.exports = async (ctx, next) => {
   switch (mode) {
     case 'auto':
       await handleAutoMode(ctx);
@@ -74,4 +74,6 @@ module.exports = async ctx => {
     default:
       await handleMockMode(ctx);
   }
+
+  await next();
 };

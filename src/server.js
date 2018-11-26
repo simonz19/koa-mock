@@ -8,7 +8,7 @@ const converter = require('koa-convert');
 const config = require('./config').mergeConfig(require('./utils/getAppConfig')(process.cwd()));
 const errorHandler = require('./middleware/errorHandler');
 const chalkWapper = require('./utils/chalkWapper');
-const router = require('./router');
+const mockController = require('./middleware/mockController');
 const setupWatch = require('./utils/setupWatch');
 
 if (config.mode === 'proxy' && !config.proxyTo) {
@@ -36,7 +36,7 @@ app.use(
 );
 app.use(bodyparser());
 app.use(logger());
-app.use(router.routes());
+app.use(mockController);
 
 const httpServer = http.createServer(app.callback());
 httpServer.listen(config.port, () => {
