@@ -4,12 +4,12 @@ const cwd = process.cwd();
 const paths = require('../config/paths')(cwd);
 const path = require('path');
 const {
-  endpoint
+  endpoint = ''
 } = require('../config').getConfig();
 
 const getMockPath = ctx => {
   const ctxUrl = url.parse(ctx.request.url);
-  if (ctxUrl.pathname.indexOf(endpoint) === -1) {
+  if (endpoint && ctxUrl.pathname.indexOf(endpoint) === -1) {
     ctx.throw('can not match endpoint');
     return;
   }

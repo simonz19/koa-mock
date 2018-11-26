@@ -50,4 +50,3 @@ mock,proxy,auto
 ## todo
 
 - setup `proxyTo` to record mock data automatically.
-- add npm `postInstall` event to automatically make `.koamockrc` template file and `mock` folder.

@@ -6,6 +6,7 @@
   },
   "scripts": {
     "precommit": "lint-staged",
+    "postinstall": "node ./bin/postinstall.js",
     "test": "cross-env NODE_ENV=development nodemon src/server.js"
   },
   "lint-staged": {

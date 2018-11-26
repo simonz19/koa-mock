@@ -3,7 +3,7 @@ const _ = require('lodash');
 let config = {
   port: 8081,
   mode: 'mock', // mock,proxy,auto
-  endpoint: '/api/biz-all',
+  endpoint: '',
   proxyTo: '' // worked on proxy mode only
 };
 
