@@ -7,16 +7,18 @@ const path = require('path');
 const cwd = process.cwd();
 
 const appDirectory = path.resolve(cwd, '..', '..');
-const rcPath = path.resolve(appDirectory, '.koamockrc.js');
-const mockDirectory = path.resolve(appDirectory, 'mock');
+const rcTplPath = path.resolve(__dirname, '..', 'src/tpl/.koamockrc.js');
+const rcAppPath = path.resolve(appDirectory, '.koamockrc.js');
+const mockTplDirectory = path.resolve(__dirname, '..', 'src/tpl/mock');
+const mockAppDirectory = path.resolve(appDirectory, 'mock');
 
-if (!fs.existsSync(mockDirectory)) {
-  fs.mkdirsSync(mockDirectory);
+if (!fs.existsSync(mockAppDirectory)) {
+  fs.copySync(mockTplDirectory, mockAppDirectory);
 }
 
-if (!fs.existsSync(rcPath)) {
-  const tplFile = fs.readFileSync(path.resolve(__dirname, '..', 'src/tpl/.koamockrc.js'), 'utf-8');
-  fs.writeFileSync(rcPath, tplFile);
+if (!fs.existsSync(rcAppPath)) {
+  const tplFile = fs.readFileSync(rcTplPath, 'utf-8');
+  fs.writeFileSync(rcAppPath, tplFile);
   console.log(chalk.cyan("a temp config file '.koamockrc.js' of koa-mock has been generated"));
   console.log();
 }
