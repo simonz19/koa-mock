@@ -8,6 +8,8 @@ koa-mock is a mock service based on koa.
 npm install koa-mock --save-dev
 ```
 
+> a npm script `postinstall` hook has been added, once install complete, `postinstall` will be fired automatically to generate `.koamockrc.js` file and `mock` folder in root project directory if which are not exist.
+
 ### .koamockrc
 
 configure `.koamockrc` or `.koamockrc.js` in your root project path, the change of these two files will fire an event to mock service and the serivce will restart immediately. it's important to keep in mind that only one of them should be existed.
