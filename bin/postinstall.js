@@ -19,6 +19,13 @@ if (!fs.existsSync(mockAppDirectory)) {
 if (!fs.existsSync(rcAppPath)) {
   const tplFile = fs.readFileSync(rcTplPath, 'utf-8');
   fs.writeFileSync(rcAppPath, tplFile);
-  console.log(chalk.cyan("a temp config file '.koamockrc.js' of koa-mock has been generated"));
+  console.log('> koa-mock');
+  console.log();
+  console.log("a temp config file '.koamockrc.js' of koa-mock has been generated");
+  console.log();
+  const tplConfig = require(rcTplPath); // eslint-disable-line
+  const macher = /\/?(.*[^/])\/?/.exec(tplConfig.endpoint); // strip '/' of the start and end of endpoint
+  const tplApiPath = macher && macher[1] ? `${macher[1]}/test` : 'test';
+  console.log(chalk.cyan(`try to run 'koamock start', then visit http://localhost:${tplConfig.port}/${tplApiPath}`));
   console.log();
 }
