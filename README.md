@@ -29,8 +29,8 @@ if **"/api/biz-all"** is setup to `endpoint` then mock construction should be as
 ```bash
 ├── /mock/
 │ ├── /search/
-│ │ ├── list
-│ │ │    └── index.json
+│ │ ├── /list/
+│ │ │ └── index.json
 ```
 
 ## .koamockrc options
