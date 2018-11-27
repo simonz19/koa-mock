@@ -43,5 +43,5 @@ httpServer.listen(config.port, () => {
   if (require.main !== module) {
     setupWatch(httpServer);
   }
-  chalkWapper(chalk.cyan)(`mock start sucessful on http://localhost:${config.port}`);
+  chalkWapper(chalk.cyan)(`mock started sucessfully on http://localhost:${config.port}`);
 });
