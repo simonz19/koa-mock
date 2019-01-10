@@ -44,7 +44,8 @@ const handleAutoMode = async ctx => {
   const mockpath = getMockPath(ctx);
   if (priority === 'proxy') {
     await handleProxyMode(ctx);
-    if (ctx.status === 404) {
+    const contentType = ctx.response.headers['content-type'];
+    if (ctx.status === 404 || contentType.indexOf('json') === -1) {
       await handleMockMode(ctx);
     }
   } else if ((mockpath && fs.existsSync(mockpath)) || !proxyTo) {

@@ -57,3 +57,5 @@ proxy host, worked in `proxy` and `auto` mode.
 
 - delay
 - random data
+
+> json is the only supported content-type
