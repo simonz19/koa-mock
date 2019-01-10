@@ -52,3 +52,8 @@ a fixed part of api path such as "/api/biz-all".
 ### proxyTo
 
 proxy host, worked in `proxy` and `auto` mode.
+
+## todo
+
+- delay
+- random data

@@ -5,7 +5,7 @@ const paths = require('../config/paths')(cwd);
 const path = require('path');
 const proxy = require('koa-proxy');
 const convert = require('koa-convert');
-const { endpoint = '', mode, proxyTo } = require('../config').getConfig();
+const { endpoint = '', mode, proxyTo, priority } = require('../config').getConfig();
 
 const getMockPath = ctx => {
   const ctxUrl = url.parse(ctx.request.url);
@@ -22,6 +22,9 @@ const getMockPath = ctx => {
 };
 
 const handleMockMode = async ctx => {
+  ctx.response.set({
+    'mock-type': 'mock'
+  });
   const mockpath = getMockPath(ctx);
   if (!mockpath || !fs.existsSync(mockpath)) {
     ctx.throw('no such mock data yet!');
@@ -33,19 +36,28 @@ const handleMockMode = async ctx => {
     respBody = respBody();
   }
   ctx.body = respBody;
+  ctx.status = 200;
   delete require.cache[require.resolve(mockpath)];
 };
 
 const handleAutoMode = async ctx => {
   const mockpath = getMockPath(ctx);
-  if ((mockpath && fs.existsSync(mockpath)) || !proxyTo) {
-    return handleMockMode(ctx);
+  if (priority === 'proxy') {
+    await handleProxyMode(ctx);
+    if (ctx.status === 404) {
+      await handleMockMode(ctx);
+    }
+  } else if ((mockpath && fs.existsSync(mockpath)) || !proxyTo) {
+    await handleMockMode(ctx);
   } else {
-    return handleProxyMode(ctx);
+    await handleProxyMode(ctx);
   }
 };
 
 const handleProxyMode = async ctx => {
+  ctx.response.set({
+    'mock-type': 'proxy'
+  });
   const proxyFunc = convert(
     proxy({
       host: proxyTo
